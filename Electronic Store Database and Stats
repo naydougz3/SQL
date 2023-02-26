@@ -1,0 +1,38 @@
+--Create an electronic store database
+
+CREATE TABLE electronic_store (id integer primary key, name text, brand text, color text, quantity integer, price real);
+
+INSERT INTO electronic_store VALUES (1, 'keyboard', 'logictech', 'black', 20, 40.99);
+INSERT INTO electronic_store VALUES (2, 'mouse', 'apple', 'white', 20, 30.99);
+INSERT INTO electronic_store VALUES (3, 'controller', 'microsoft', 'silver', 10, 45.99);
+INSERT INTO electronic_store VALUES (4, 'laptop charger', 'lenovo', 'black', 30, 25.99);
+INSERT INTO electronic_store VALUES (5, 'iphone', 'apple', 'blue', 15, 359.99);
+INSERT INTO electronic_store VALUES (6, 'speaker', 'jbl', 'gray', 10, 69.99);
+INSERT INTO electronic_store VALUES (7, 'portable charger', 'blackweb', 'black', 10, 50.99);
+INSERT INTO electronic_store VALUES (8, 'hdmi cord', 'samsung', 'black', 30, 6.99);
+INSERT INTO electronic_store VALUES (9, 'ps4', 'playstation', 'white', 25, 499.99);
+INSERT INTO electronic_store VALUES (10, 'xbox', 'microsoft', 'white', 25, 499.99);
+INSERT INTO electronic_store VALUES (11, 'phone charger', 'iphone', 'white', 30, 15.99);
+INSERT INTO electronic_store VALUES (12, 'tripod', 'rohs', 'black', 10, 25.99);
+INSERT INTO electronic_store VALUES (13, 'projector', 'nebula', 'black', 20, 299.99);
+INSERT INTO electronic_store VALUES (14, 'ipad', 'apple', 'gray', 10, 259.99);
+INSERT INTO electronic_store VALUES (15, 'laptop charger', 'apple', 'white', 30, 79.99);
+
+
+
+--Display the database by price ascending
+
+SELECT * FROM electronic_store 
+ORDER BY price asc;
+
+
+--Display total quanity of items in store
+
+SELECT SUM(quantity) FROM electronic_store;
+
+
+--Display all items that come in black and costs less than $100:
+
+SELECT * FROM electronic_store 
+WHERE color = 'black'
+AND price < 100;
