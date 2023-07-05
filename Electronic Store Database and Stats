@@ -1,38 +1,59 @@
 --Create an electronic store database
 
-CREATE TABLE electronic_store (id integer primary key, name text, brand text, color text, quantity integer, price real);
+CREATE TABLE electronic_store
+(ID integer primary key,
+name text,
+brand text,
+color text,
+quantity integer,
+price real);
 
-INSERT INTO electronic_store VALUES (1, 'keyboard', 'logictech', 'black', 20, 40.99);
-INSERT INTO electronic_store VALUES (2, 'mouse', 'apple', 'white', 20, 30.99);
-INSERT INTO electronic_store VALUES (3, 'controller', 'microsoft', 'silver', 10, 45.99);
-INSERT INTO electronic_store VALUES (4, 'laptop charger', 'lenovo', 'black', 30, 25.99);
-INSERT INTO electronic_store VALUES (5, 'iphone', 'apple', 'blue', 15, 359.99);
-INSERT INTO electronic_store VALUES (6, 'speaker', 'jbl', 'gray', 10, 69.99);
-INSERT INTO electronic_store VALUES (7, 'portable charger', 'blackweb', 'black', 10, 50.99);
-INSERT INTO electronic_store VALUES (8, 'hdmi cord', 'samsung', 'black', 30, 6.99);
-INSERT INTO electronic_store VALUES (9, 'ps4', 'playstation', 'white', 25, 499.99);
-INSERT INTO electronic_store VALUES (10, 'xbox', 'microsoft', 'white', 25, 499.99);
-INSERT INTO electronic_store VALUES (11, 'phone charger', 'iphone', 'white', 30, 15.99);
-INSERT INTO electronic_store VALUES (12, 'tripod', 'rohs', 'black', 10, 25.99);
-INSERT INTO electronic_store VALUES (13, 'projector', 'nebula', 'black', 20, 299.99);
-INSERT INTO electronic_store VALUES (14, 'ipad', 'apple', 'gray', 10, 259.99);
-INSERT INTO electronic_store VALUES (15, 'laptop charger', 'apple', 'white', 30, 79.99);
+INSERT INTO electronic_store VALUES
+(1,'Keyboard', 'Apple', 'white', 10, 34.99),
+(2, 'Keyboard', 'Microsoft', 'black', 15, 24.99),
+(3, 'Mouse', 'HP', 'grey', 10, 19.99),
+(4, 'Mousepad', 'Logitech', 'white', 20, 9.99),
+(5, 'Game Controller', 'Playstation', 'black', 10, 44.99),
+(6, 'Charger', 'Blackweb', 'yellow', 5, 64.99),
+(7, 'iPhone', 'Apple', 'blue', 10, 599.99),
+(8, 'Projector', 'Nebula', 'black', 5, 399.99),
+(9, 'Speaker', 'JBL', 'camo', 20, 69.99),
+(10, 'Headphones', 'Bose', 'purple', 15, 149.99),
+(11, 'AUX cord', 'Anker', 'black', 50, 8.99),
+(12, 'HDMI cord', 'Onn', 'silver', 50, 8.99),
+(13, 'Monitor', 'Dell', 'black', 15, 99.99),
+(14, 'Assorted Stickers', 'Anonymous','multi', 200, 1.99),
+(15, 'Xbox', 'Microsoft', 'white', 20, 499.99);
+
+-- Display the all items from the database. 
+
+SELECT * FROM electronic_store;
 
 
+-- Display the name, brand & price from the database by brand ascending:
 
---Display the database by price ascending
+SELECT name, brand, price FROM electronic_store
+ORDER BY brand asc;
 
-SELECT * FROM electronic_store 
-ORDER BY price asc;
-
-
---Display total quanity of items in store
+-- Display the sum of the items in the database:
 
 SELECT SUM(quantity) FROM electronic_store;
 
+--Display the name, brand & price of items in the database that cost less than $100:
 
---Display all items that come in black and costs less than $100:
+SELECT name, brand, price FROM electronic_store
+WHERE price < 100
+ORDER BY price desc;
 
-SELECT * FROM electronic_store 
+--Display the name, brand & color of items in the database that come in white:
+
+SELECT name, brand, color FROM electronic_store
+WHERE color = 'white';
+
+--Display the name, brand & color of items in the database that come in black and cost more than $80
+
+SELECT name, brand, color, price FROM electronic_store
 WHERE color = 'black'
-AND price < 100;
+AND price > 80;
+
+
