@@ -104,9 +104,16 @@ INSERT INTO players(Player,Team,Conference,Date,Position,Height,Weight,Age,Draft
 INSERT INTO players(Player,Team,Conference,Date,Position,Height,Weight,Age,Draft_Year,Seasons_in_league,Season,Season_short,Predraft_Team,Real_value,Height_CM,Weight_KG,Last_Season) VALUES ('Victor Oladipo','Indiana Pacers','East','Apr 2, 2018','G','6''4',210,25,2013,4,'2017-2018',2018,'Indiana',0.5,193,95,0);
 INSERT INTO players(Player,Team,Conference,Date,Position,Height,Weight,Age,Draft_Year,Seasons_in_league,Season,Season_short,Predraft_Team,Real_value,Height_CM,Weight_KG,Last_Season) VALUES ('Damian Lillard','Portland Trail Blazers','West','Apr 2, 2018','G','6''3',195,27,2012,5,'2017-2018',2018,'Weber State',0.5,190,88,0);
 
+--Display the name, position and team of players in the East and West Conferences--
+
 SELECT Player, Position, Team FROM players WHERE Conference = 'East' AND Position = 'PG' GROUP BY Player;
 
+
+--Display the avergae age of players in the database--
+
 SELECT ROUND(AVG(Age)) FROM players;
+
+--Display the weight classes of players in terms of under, over & at target weight--
 
 SELECT Player, Age, COUNT(*),
     CASE
@@ -115,5 +122,7 @@ SELECT Player, Age, COUNT(*),
         ELSE 'target'
     END AS 'weight_class'
 FROM players GROUP BY Player ORDER BY Player asc;
+
+--Display the total seasons palyed by all players in the database--
 
 SELECT SUM(Season) AS 'total_seasons_played' FROM players;
