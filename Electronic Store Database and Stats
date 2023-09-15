@@ -27,17 +27,20 @@ INSERT INTO electronic_store VALUES
 
 -- Display the all items from the database. 
 
-SELECT * FROM electronic_store;
+SELECT * 
+FROM electronic_store;
 
 
 -- Display the name, brand & price from the database by brand ascending:
 
-SELECT name, brand, price FROM electronic_store
+SELECT name, brand, price 
+FROM electronic_store
 ORDER BY brand asc;
 
 -- Display the sum of the items in the database:
 
-SELECT SUM(quantity) FROM electronic_store;
+SELECT SUM(quantity) 
+FROM electronic_store;
 
 --Display the name, brand & price of items in the database that cost less than $100:
 
@@ -47,12 +50,14 @@ ORDER BY price desc;
 
 --Display the name, brand & color of items in the database that come in white:
 
-SELECT name, brand, color FROM electronic_store
+SELECT name, brand, color 
+FROM electronic_store
 WHERE color = 'white';
 
 --Display the name, brand & color of items in the database that come in black and cost more than $80
 
-SELECT name, brand, color, price FROM electronic_store
+SELECT name, brand, color, price 
+FROM electronic_store
 WHERE color = 'black'
 AND price > 80;
 
