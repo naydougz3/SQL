@@ -1,0 +1,109 @@
+# For this project, I downloaded Spotify data from Kaggle.
+# Then I created a table to insert Spotify data into.
+# Finally, I performed analytics on the data using SQL. 
+
+#Creating the table: 
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL 
+)
+
+#Then I inserted the Spotify Data .csv into the table.
+
+
+#Next, I explored the data using the following SQL.
+
+
+#First, I determined the Top 10 artists by popularity:
+
+SELECT artist_name, 
+track_name, 
+popularity
+FROM BIT_DB.Spotifydata
+WHERE popularity>=95
+ORDER by popularity
+LIMIT 10;
+
+#Next, I determined the statistics of popularity on the list by the most popular, semi-popular and least popular:
+
+SELECT artist_name,
+track_name,
+CASE
+    WHEN popularity > 90 THEN 'most popular'
+    WHEN popularity > 80 THEN 'semi-popular'
+    WHEN popularity > 70 THEN 'least popular'
+    ELSE 'not popular'
+END AS popularity_stats
+FROM BIT_DB.Spotifydata
+ORDER BY popularity desc;
+
+#Then, I determined the song with the lowest energy:
+
+SELECT DISTINCT artist_name, 
+track_name, 
+energy
+FROM BIT_DB.Spotifydata
+WHERE energy IN (SELECT MIN(energy) FROM BIT_DB.Spotifydata);
+
+#Then, I determined the longest and shortest songs on the list. The formula used is to show results as Minutes:
+
+SELECT artist_name, 
+track_name,
+MAX(duration_ms/60000) AS minutes
+FROM BIT_DB.Spotifydata;
+
+SELECT artist_name, 
+track_name,
+MIN(duration_ms/60000) AS minutes
+FROM BIT_DB.Spotifydata;
+
+#Then, I determined the Top 5 most danceable songs:
+
+SELECT track_name, 
+danceability
+FROM BIT_DB.Spotifydata
+ORDER BY danceability desc
+LIMIT 5;
+
+#Then I determined the most popular songs with above average danceability:
+
+SELECT artist_name,
+track_name,
+popularity,
+danceability
+FROM BIT_DB.Spotifydata
+GROUP BY track_name
+HAVING popularity >= 90
+AND danceability > 0.55
+ORDER BY danceability;
+
+#Finally, I determined the top artist(s) by how many songs are listed:
+
+SELECT artist_name, 
+COUNT(track_name) AS total_tracks
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+HAVING total_tracks>2;
+
+
+
+
+
+
+
